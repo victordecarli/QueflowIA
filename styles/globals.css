@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure dark background everywhere */
+:root {
+  background-color: #0a0a0a;
+  color-scheme: dark;
+}
+
+html {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+}
+
+body {
+  background-color: #0a0a0a;
+  min-height: 100vh;
+}
+
+/* ... existing styles ... */
+
+/* Thinner white border on focus */
+input:focus,
+select:focus {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  border-width: 1px !important;
+  outline: none !important;
+  ring-width: 0 !important;
+}
+
+/* Dark gradient background for editor tools */
+.editor-tools-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.95),
+    rgba(0, 0, 0, 0.98)
+  );
+}
