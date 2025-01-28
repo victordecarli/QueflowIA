@@ -11,15 +11,15 @@ export async function POST(request: Request) {
     if (!isValidHash) {
       console.error('Hash validation failed');
       return NextResponse.json(
-        { error: 'Invalid payment signature' },
+        { error: 'Assinatura inválida' },
         { status: 400 }
       );
     }
 
     if (body.status !== 'success' || body.unmappedstatus !== 'captured') {
-      console.error('Payment not successful:', { status: body.status, unmapped: body.unmappedstatus });
+      console.error('Pagamento não realizado:', { status: body.status, unmapped: body.unmappedstatus });
       return NextResponse.json(
-        { error: body.error_Message || 'Payment was not successful' },
+        { error: body.error_Message || 'Falha no pagamento' },
         { status: 400 }
       );
     }
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       .single();
 
     if (userError || !userData) {
-      throw new Error('User not found');
+      throw new Error('Usuário não encontrado');
     }
 
     // Calculate expiration date
@@ -70,7 +70,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('PayU Verification Error:', error);
     return NextResponse.json(
-      { error: 'Payment verification failed' },
+      { error: 'Verificação do pagamento falhou' },
       { status: 500 }
     );
   }
